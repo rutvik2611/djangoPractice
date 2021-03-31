@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . import forms
 # Create your views here.
 
 def home(request):
@@ -11,5 +12,8 @@ def not_home(request):
 def signup(request):
     name="SignUp"
     return render(request,'FIRSTAPPLICATION/Signup.html')
+
+def signup2(request):
+    
 
     
