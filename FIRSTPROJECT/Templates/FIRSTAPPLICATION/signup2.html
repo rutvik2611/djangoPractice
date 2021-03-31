@@ -7,10 +7,16 @@
     </head>
 
     <body>
-        <h1>
+        
+            <form method="POST">
+                <div><h1>Register </h1> </h1>
            Sign Up through django forms
-           {{ form.as_p }} 
-        </h1>
+           {{ form.as_p }}
+           {% csrf_token %}
+           <input type="submit" value="Register">    
+        </div>
+        </form>
+       
 
 
     </body>
