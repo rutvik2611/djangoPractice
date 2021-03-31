@@ -8,5 +8,8 @@ def home(request):
 def not_home(request):
     name="Hello"
     return render(request,'FIRSTAPPLICATION/home.html')
+def signup(request):
+    name="SignUp"
+    return render(request,'FIRSTAPPLICATION/Signup.html')
 
     
