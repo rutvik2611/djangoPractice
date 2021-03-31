@@ -14,6 +14,8 @@ def signup(request):
     return render(request,'FIRSTAPPLICATION/Signup.html')
 
 def signup2(request):
-    
+    #templet tagging
+    form=forms.Signupforms
+    return render(request,'FIRSTAPPLICATION/Signup2.html',{'form':form})
 
     
