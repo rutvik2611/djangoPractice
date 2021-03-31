@@ -4,6 +4,8 @@ from FIRSTAPPLICATION import views
 urlpatterns = [
     
     path('',views.not_home),
-    path('r/',views.home)
+    path('r/',views.home),
+    path('signup/',views.signup)
+    
     
 ]
