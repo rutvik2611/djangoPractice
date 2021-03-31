@@ -19,4 +19,15 @@ class Students(models.Model):
 
     def __str__(self):
         return self.name
+
+class ContactInfor(models.Model):
+    name=models.CharField(max_length=30)
+    email=models.CharField(max_length=30)
+    address=models.CharField(max_length=30)
+
+    class Meta:
+            abstract=True
+
+class Customer(ContactInfor):
+    phone=models.IntegerField()
     
