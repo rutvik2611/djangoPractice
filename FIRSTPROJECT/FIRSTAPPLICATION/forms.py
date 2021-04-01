@@ -7,7 +7,7 @@ def check(value):
     if re.match("^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$",value):
         print("Validated")
     else:
-        print("Password Validation Error")
+        print("Password Validation Error!")
         raise forms.ValidationError("Should not be greater than 5")
        
             
