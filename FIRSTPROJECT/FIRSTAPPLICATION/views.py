@@ -15,7 +15,13 @@ def signup(request):
 
 def signup2(request):
     #templet tagging
+    if request.method == "POST":
+        calling_form=forms.Signupforms(request.POST)
+        if calling_form.is_valid():
+            print("Validation Worked")
+            print("Name:" + calling_form.cleaned_data['First_name'])
     calling_form=forms.Signupforms
     return render(request,'FIRSTAPPLICATION/Signup2.html',{'form':calling_form})
 
     
+
