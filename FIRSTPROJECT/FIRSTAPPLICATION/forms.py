@@ -1,10 +1,13 @@
 from django import forms
 from django.core import validators
+import re
 
 def check(value):
     #print(value)
-    if len(value)<6:
-        #print(type(value))
+    if re.match("^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$",value):
+        print("Validated")
+    else:
+        print("Password Validation Error")
         raise forms.ValidationError("Should not be greater than 5")
        
             
