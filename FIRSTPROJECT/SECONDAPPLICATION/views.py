@@ -40,7 +40,7 @@ def emp(request):
 #READ
 def show(request):
     employees=Employee.objects.all()
-    return render(request, "SECONDAPPLICATION/show.html", {'employees':employees})
+    return render(request, 'SECONDAPPLICATION/show.html', {'employees':employees})
 
 #DELETE, EDIT/UPDATE
 def destroy(request,id):
@@ -52,7 +52,7 @@ def destroy(request,id):
 
 def edit(request,id):
     employee=Employee.objects.get(id=id)
-    return render(request,'edit.html', {'employee':employee})
+    return render(request,'SECONDAPPLICATION/edit.html', {'employee':employee})
 
 def update(request,id):
     employee=Employee.objects.get(id=id)
@@ -60,4 +60,4 @@ def update(request,id):
     if form.is_valid():
         form.save()
         return redirect("/show")
-    return render(request,'edit.html',{'employee':employee})
+    return render(request,'SECONDAPPLICATION/edit.html',{'employee':employee})
