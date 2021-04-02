@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from . import forms
 from FIRSTAPPLICATION import views as v # not needed
 from .forms import EmployeeForm  #why did i need to import this sepratly
+from .models import Employee
 # Create your views here.
 # def home(request):
 
@@ -35,4 +36,10 @@ def emp(request):
     else:
         form = EmployeeForm()
     return render(request,'SECONDAPPLICATION/index.html',{'form':form})
+
+#READ
+def show(request):
+    employees=Employee.objects.all()
+    return render(request, "SECONDAPPLICATION/show.html", {'employees':employees})
+
     
