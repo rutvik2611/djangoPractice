@@ -14,7 +14,7 @@ def home(request):
         if passing_form.is_valid():
             try:
                 passing_form.save()
-                return redirect(v.not_home) #just to checl
+                return redirect(v.not_home) #just to check
             except:
                 print("Errorrr")
         else:
