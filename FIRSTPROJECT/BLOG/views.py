@@ -12,7 +12,7 @@ def signup(request):
         if passing.is_valid():
             try:
                 passing.save()
-                return HttpResponse0("views.signup")
+                return HttpResponse("views.signup")
             except:
                 return HttpResponse("ERROR")
         else:
