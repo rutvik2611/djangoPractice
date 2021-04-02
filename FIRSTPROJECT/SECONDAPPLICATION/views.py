@@ -42,4 +42,22 @@ def show(request):
     employees=Employee.objects.all()
     return render(request, "SECONDAPPLICATION/show.html", {'employees':employees})
 
+#DELETE, EDIT/UPDATE
+def destroy(request,id):
+    employee=Employee.objects.get(id=id)
+    employee.delete()
+    return redirect('/show')
     
+#UPDATE--> EDIT -> UPDATE
+
+def edit(request,id):
+    employee=Employee.objects.get(id=id)
+    return render(request,'edit.html', {'employee':employee})
+
+def update(request,id):
+    employee=Employee.objects.get(id=id)
+    form=EmployeeForm(request.POST, instance=employee)
+    if form.is_valid():
+        form.save()
+        return redirect("/show")
+    return render(request,'edit.html',{'employee':employee})
