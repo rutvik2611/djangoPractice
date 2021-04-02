@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from . import forms
 from FIRSTAPPLICATION import views as v # not needed
+from .forms import EmployeeForm  #why did i need to import this sepratly
 # Create your views here.
 # def home(request):
 
@@ -21,3 +22,17 @@ def home(request):
             passing_form = forms.registration_form() 
                        
     return render(request,'SECONDAPPLICATION/Registration.html',{'form':passing_form})
+
+def emp(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/show')
+            except:
+                pass
+    else:
+        form = EmployeeForm()
+    return render(request,'SECONDAPPLICATION/index.html',{'form':form})
+    
