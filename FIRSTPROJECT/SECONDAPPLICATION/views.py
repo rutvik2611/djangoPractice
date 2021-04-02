@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from . import forms
+from FIRSTAPPLICATION import views as v # not needed
 # Create your views here.
 # def home(request):
 
@@ -13,6 +14,7 @@ def home(request):
         if passing_form.is_valid():
             try:
                 passing_form.save()
+                return redirect(v.not_home) #just to checl
             except:
                 print("Errorrr")
         else:
