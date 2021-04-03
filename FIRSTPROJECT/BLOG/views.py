@@ -1,22 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import LOGIN
+from .forms import Regsistration
 # Create your views here.
 
 # def signup(request):
 #     return HttpResponse("Hey!")
 
 def signup(request):
-    passing = LOGIN(request.POST)
+    passing = Regsistration()
     if request.method == "POST":
-        passing = LOGIN(request.POST)
+        passing = Regsistration(request.POST)
         if passing.is_valid():
             try:
                 passing.save()
-                return HttpResponse("views.Welcome")
+                return HttpResponse("Registered")
             except:
                 return HttpResponse("ERROR")
         else:
-            passing = forms.LOGIN()
+            return HttpResponse("ERROR In Validating")
 
-    return render(request,"BLOG/Login.html",{"passed_value":passing})
+    return render(request,"BLOG/Registration.html",{"passed_value":passing})
+
+
+def Welcome(request):
+    return render(request,"BLOG/Welcome.html",{"Registration":Regsistration.objects.all()})
+    
