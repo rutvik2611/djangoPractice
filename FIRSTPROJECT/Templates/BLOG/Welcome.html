@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>
+            HOME
+        </title>
+    </head>
+
+    <body>
+        
+            Welcome ,
+            <td>    {% for employee in Registrations %}
+                 {{ employee.username }}
+                 {% csrf_token %}
+            
+            </td>
+        
+    </body>
+</html>
