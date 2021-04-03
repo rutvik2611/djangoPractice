@@ -7,14 +7,16 @@ from .forms import LOGIN
 #     return HttpResponse("Hey!")
 
 def signup(request):
+    passing = LOGIN(request.POST)
     if request.method == "POST":
         passing = LOGIN(request.POST)
         if passing.is_valid():
             try:
                 passing.save()
-                return HttpResponse("views.signup")
+                return HttpResponse("views.Welcome")
             except:
                 return HttpResponse("ERROR")
         else:
             passing = forms.LOGIN()
-    return HttpResponse("WORKED I GUESS")
+
+    return render(request,"BLOG/Login.html",{"passed_value":passing})
