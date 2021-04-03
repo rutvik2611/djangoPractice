@@ -7,32 +7,20 @@
 
     <body>
         <h1>Checking</h1>>
-        <table >
-            <thead >
-            <tr>
-                <th>Username</th>
-                
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+       
+            
+
                
                 <!-- a=[2,3,4,5,6]     employees=[['name', 'email'], ['name','email']
                 for i in a:
                     print(a)   {{ employee.ename  }} -->
-        {% for employee in Registrations %}
-            <tr>
-                <td>{{ employee }}</td> 
-             
-                <td>
-                    <a href="/delete/{{ employee.id }}">DELETE</a>
-                    <a href="/edit/{{ employee.id }}">EDIT</a>
-        
-                </td>
-            </tr>
+        {% for i in Registration %}        
+         <h1>      {{ i }}
+          
+         </h1>
         {% endfor %}
-            </tbody>
-        </table>
+
+        
     <h3>
         ?
     </h3>
