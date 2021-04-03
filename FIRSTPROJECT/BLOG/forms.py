@@ -1,10 +1,13 @@
 from django.forms import ModelForm
-from .models import LOGIN
+from .models import Regsistration
+from django import forms
 
-class LOGIN(ModelForm):
-
+class Regsistration(ModelForm):
+    #password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
-        model = LOGIN
+        model = Regsistration
+        #fields = ['username','password','email','phone_number']
         fields = "__all__"
+        widgets = {'password': forms.PasswordInput()}
 
     
