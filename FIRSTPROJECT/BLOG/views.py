@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import Regsistration
+from . import views
 # Create your views here.
 
 # def signup(request):
@@ -13,7 +14,8 @@ def signup(request):
         if passing.is_valid():
             try:
                 passing.save()
-                return HttpResponse("Registered")
+                #return HttpResponse("Registered")
+                return redirect("welcome/") 
             except:
                 return HttpResponse("ERROR")
         else:
@@ -23,5 +25,5 @@ def signup(request):
 
 
 def Welcome(request):
-    return render(request,"BLOG/Welcome.html",{"Registration":Regsistration.objects.all()})
+    return render(request,"BLOG/Welcome.html",{"Registration":Regsistration()})
     
