@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import LOGIN
+from .models import Regsistration
 # Register your models here.
-admin.site.register(LOGIN)
+admin.site.register(Regsistration)
