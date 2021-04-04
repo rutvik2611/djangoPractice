@@ -51,3 +51,22 @@ def login(request):
             return HttpResponse("Welcome :" + usernamex + " This is Your Email : " + passing.email + " This is your Phone Number: " + passing.phone_number)
 
     return render(request, 'BLOG/login.html', {'passed_value': form})
+
+def delete_registration(request,id):
+    obj_for_query = Regsistration.objects.get(id=id)
+    obj_for_query.delete()
+    return redirect('../show')
+
+def edit_registration(request,id):
+    obj_for_query = Regsistration.objects.get(id=id)
+    return render(request, 'BLOG/edit.html',{"employee":obj_for_query})
+
+def update_registration(request,id):
+    obj_for_query=Regsistration.objects.get(id=id)
+    form=Regsistration_form(request.POST, instance=obj_for_query)
+    if form.is_valid():
+        form.save()
+        return redirect("blog/show")
+    else:
+        HttpResponse("Problem Validating")
+    return render(request,'BLOG/edit.html',{'employee':obj_for_query})
