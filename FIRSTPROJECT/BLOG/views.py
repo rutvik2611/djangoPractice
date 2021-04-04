@@ -79,9 +79,10 @@ def update_registration(request,id):
             print("Saved in Database")
             return redirect("../show")
         else:
-            return HttpResponse("Well")
+            return HttpResponse("Possible Issue Username or Email Exists ,phonenumber does not meet our requirments")
+
     except:
-        return HttpResponse("Possible Issue Username or Email Exists ,phonenumber does not meet our requirments")
+        return HttpResponse("Issue Other than validating")
 
     
     return HttpResponse("ID was: "+ str(obj_for_query.username))
