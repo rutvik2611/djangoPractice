@@ -23,7 +23,7 @@ def signup(request):
         else:
             return HttpResponse("ERROR In Validating")
 
-    return render(request,"BLOG/Registration.html",{"passed_value":passing})
+    return render(request,"BLOG/Registration.html",{"form":passing})
 
 
 # def Welcome(request):
@@ -43,9 +43,11 @@ def login(request):
         usernamex = form.cleaned_data.get("username")
         passwordx = form.cleaned_data.get("password")
 
-        passing = Regsistration(request.POST)
-        obj = passing.objects.get(username=usernamex)
-        if True:
-           return HttpResponse("Try") 
+        passing = Regsistration.objects.get(username=usernamex)
+        
+        if passing.password != passwordx:
+           return HttpResponse("Username and Password Did not Match") 
+        else:
+            return HttpResponse("Welcome :" + usernamex)
 
     return render(request, 'BLOG/login.html', {'passed_value': form})
