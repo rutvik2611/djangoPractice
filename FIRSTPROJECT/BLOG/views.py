@@ -48,6 +48,6 @@ def login(request):
         if passing.password != passwordx:
            return HttpResponse("Username and Password Did not Match") 
         else:
-            return HttpResponse("Welcome :" + usernamex)
+            return HttpResponse("Welcome :" + usernamex + " This is Your Email : " + passing.email + " This is your Phone Number: " + passing.phone_number)
 
     return render(request, 'BLOG/login.html', {'passed_value': form})
