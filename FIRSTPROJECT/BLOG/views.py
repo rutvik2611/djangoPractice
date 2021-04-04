@@ -67,11 +67,19 @@ def edit_registration(request,id):
     return render(request, 'BLOG/edit.html',{"employee":obj_for_query})
 
 def update_registration(request,id):
-    obj_for_query=Regsistration.objects.get(id=id)
-    form=Regsistration_form(request.POST, instance=obj_for_query)
-    if form.is_valid():
-        form.save()
-        return redirect("blog/show")
-    else:
-        HttpResponse("Problem Validating")
-    return render(request,'BLOG/edit.html',{'employee':obj_for_query})
+    obj_for_query = Regsistration.objects.get(id=id)
+    try:
+        passing = Regsistration_form(request.POST, instance = obj_for_query)
+        print("threw Error")
+        if passing.is_valid():
+            print("validated")
+            passing.save()
+            print("Cannot save")
+            return redirect("blog/show")
+        else:
+            return HttpResponse("Well")
+    except:
+        return HttpResponse("Possible Issue Username or Email Exists ,phonenumber does not meet our requirments")
+
+    
+    return HttpResponse("ID was: "+ str(obj_for_query.username))
