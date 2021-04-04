@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import Regsistration
 from . import views
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 # def signup(request):
@@ -27,4 +28,14 @@ def signup(request):
 def Welcome(request):
     pass_obj = Regsistration.objects.all()
     return render(request,"BLOG/Welcome.html",{"Registration":pass_obj})
-    
+
+
+
+def login(request):
+    form = login_form(request.POST or None)
+    if form.is_valid():
+       username = form.cleaned_data.get("username")
+       password = form.cleaned_data.get("password")
+       user = authenticate(username=username, password=password)
+       login(request,user)
+    return render(request, 'login.html', {'form': form})
