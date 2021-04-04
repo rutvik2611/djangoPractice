@@ -1,17 +1,18 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Regsistration
+from .forms import Regsistration_form,login_form
 from . import views
 from django.contrib.auth import authenticate, login
+from .models import Regsistration
 # Create your views here.
 
 # def signup(request):
 #     return HttpResponse("Hey!")
 
 def signup(request):
-    passing = Regsistration()
+    passing = Regsistration_form()
     if request.method == "POST":
-        passing = Regsistration(request.POST)
+        passing = Regsistration_form(request.POST)
         if passing.is_valid():
             try:
                 passing.save()
@@ -25,17 +26,26 @@ def signup(request):
     return render(request,"BLOG/Registration.html",{"passed_value":passing})
 
 
-def Welcome(request):
+# def Welcome(request):
+#     pass_obj = Regsistration.objects.all()
+#     return render(request,"BLOG/Welcome.html",{"Registration":pass_obj})
+
+def Show(request):
     pass_obj = Regsistration.objects.all()
-    return render(request,"BLOG/Welcome.html",{"Registration":pass_obj})
+    return render(request,"BLOG/show.html",{"employees":pass_obj})
 
 
 
 def login(request):
     form = login_form(request.POST or None)
     if form.is_valid():
-       username = form.cleaned_data.get("username")
-       password = form.cleaned_data.get("password")
-       user = authenticate(username=username, password=password)
-       login(request,user)
-    return render(request, 'login.html', {'form': form})
+
+        usernamex = form.cleaned_data.get("username")
+        passwordx = form.cleaned_data.get("password")
+
+        passing = Regsistration(request.POST)
+        obj = passing.objects.get(username=usernamex)
+        if True:
+           return HttpResponse("Try") 
+
+    return render(request, 'BLOG/login.html', {'passed_value': form})
