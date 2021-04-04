@@ -42,13 +42,18 @@ def login(request):
 
         usernamex = form.cleaned_data.get("username")
         passwordx = form.cleaned_data.get("password")
+        try:
 
-        passing = Regsistration.objects.get(username=usernamex)
+            passing = Regsistration.objects.get(username=usernamex)
+            if passing.password != passwordx:
+                return HttpResponse("Username and Password Did not Match") 
+            else:
+                return HttpResponse("Welcome :" + usernamex + " This is Your Email : " + passing.email + " This is your Phone Number: " + passing.phone_number)
+    
+        except:
+            return HttpResponse("UserName Does Not Exist")
         
-        if passing.password != passwordx:
-           return HttpResponse("Username and Password Did not Match") 
-        else:
-            return HttpResponse("Welcome :" + usernamex + " This is Your Email : " + passing.email + " This is your Phone Number: " + passing.phone_number)
+        
 
     return render(request, 'BLOG/login.html', {'passed_value': form})
 
