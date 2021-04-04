@@ -15,7 +15,7 @@ def signup(request):
             try:
                 passing.save()
                 #return HttpResponse("Registered")
-                return redirect("welcome/") 
+                return render(request,"BLOG/Welcome.html",{"Registration":passing})
             except:
                 return HttpResponse("ERROR")
         else:
@@ -25,5 +25,6 @@ def signup(request):
 
 
 def Welcome(request):
-    return render(request,"BLOG/Welcome.html",{"Registration":Regsistration()})
+    pass_obj = Regsistration.objects.all()
+    return render(request,"BLOG/Welcome.html",{"Registration":pass_obj})
     
