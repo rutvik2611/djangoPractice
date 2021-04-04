@@ -70,12 +70,14 @@ def update_registration(request,id):
     obj_for_query = Regsistration.objects.get(id=id)
     try:
         passing = Regsistration_form(request.POST, instance = obj_for_query)
-        print("threw Error")
+        #print("threw Error")
+        
+        
         if passing.is_valid():
             print("validated")
             passing.save()
-            print("Cannot save")
-            return redirect("blog/show")
+            print("Saved in Database")
+            return redirect("../show")
         else:
             return HttpResponse("Well")
     except:
