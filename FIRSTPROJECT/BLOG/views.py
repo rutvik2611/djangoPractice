@@ -21,7 +21,7 @@ def signup(request):
             except:
                 return HttpResponse("ERROR")
         else:
-            return HttpResponse("ERROR In Validating")
+            return HttpResponse("Issue :" + str(passing.errors))
 
     return render(request,"BLOG/Registration.html",{"form":passing})
 
