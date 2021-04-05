@@ -108,7 +108,7 @@ def login2(request):
             user = authenticate(username=usernamex, password=passwordx)
             if user is not None:
                 # A backend authenticated the credentials
-                return HttpResponse("Form Valid,Welcome :" + str(user))
+                return render(request,"BLOG/Re.html",{"d":form})
             else:
                 # No backend authenticated the credentials
                 return HttpResponse("Not a user")
