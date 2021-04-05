@@ -3,6 +3,7 @@ from .models import Regsistration
 from django import forms
 from django.contrib.auth import authenticate, login
 
+
 class Regsistration_form(ModelForm):
     #password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
@@ -33,3 +34,12 @@ class login_form(forms.Form):
         #         raise forms.ValidationError("Wrong Password")
         # else:
         #     raise form.ValidationError("Enter Username and Password to be validated")  
+
+
+class Login_form2(ModelForm):
+    #password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = Regsistration
+        fields = ['username','password']
+        
+        widgets = {'password': forms.PasswordInput()}

@@ -10,5 +10,6 @@ urlpatterns = [
     path('blog/show',views.Show),
     path('blog/delete/<int:id>',views.delete_registration),
     path('blog/edit/<int:id>',views.edit_registration),
-    path('blog/update/<int:id>',views.update_registration)
+    path('blog/update/<int:id>',views.update_registration),
+    path('blog/login2/',views.login2)
 ]

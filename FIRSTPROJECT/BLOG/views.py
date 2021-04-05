@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import Regsistration_form,login_form
+from .forms import Regsistration_form,login_form,Login_form2
 from . import views
 from django.contrib.auth import authenticate, login
 from .models import Regsistration
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 # def signup(request):
@@ -86,3 +88,34 @@ def update_registration(request,id):
 
     
     return HttpResponse("ID was: "+ str(obj_for_query.username))
+
+def login2(request):
+    # form = Login_form2()
+    # if request.method == 'POST':
+    #     form = Login_form2(data =request.POST or None)
+    #     if form.is_valid():
+    #         return HttpResponse("Form Valid")
+    #     else:
+    #         print(uname)
+    #         return HttpResponse("Validation Error" + str(form.errors))
+    # return render(request, 'BLOG/login.html', {'passed_value': form})
+    form = login_form(request.POST or None)
+    if form.is_valid():
+
+        usernamex = form.cleaned_data.get("username")
+        passwordx = form.cleaned_data.get("password")
+        try:
+            user = authenticate(username=usernamex, password=passwordx)
+            if user is not None:
+                # A backend authenticated the credentials
+                return HttpResponse("Form Valid,Welcome :" + str(user))
+            else:
+                # No backend authenticated the credentials
+                return HttpResponse("Not a user")
+    
+        except:
+            return HttpResponse("UserName Does Not Exist")
+        
+        
+
+    return render(request, 'BLOG/login.html', {'passed_value': form})
