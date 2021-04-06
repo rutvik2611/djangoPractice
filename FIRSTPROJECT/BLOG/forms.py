@@ -51,6 +51,3 @@ class Login_form2(ModelForm):
         
         widgets = {'password': forms.PasswordInput()}
 
-class create_blog(Regsistration):
-    
-    class meta:
