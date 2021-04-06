@@ -12,5 +12,6 @@ urlpatterns = [
     path('blog/edit/<int:id>',views.edit_registration),
     path('blog/update/<int:id>',views.update_registration),
     path('blog/login2/',views.login2),
-    path('blog/json',views.random)
+    path('blog/json',views.random),
+    path('blog/api',views.RegList.as_view())
 ]

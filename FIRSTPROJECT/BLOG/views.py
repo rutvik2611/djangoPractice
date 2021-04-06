@@ -5,7 +5,9 @@ from . import views
 from django.contrib.auth import authenticate, login
 from .models import Regsistration
 from django.contrib.auth.models import User
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializer import Reg_Serializer
 # Create your views here.
 
 # def signup(request):
@@ -116,9 +118,19 @@ def login2(request):
 def random(request):
     x = x = {
   "name": "John",
-  "age": 30,
-  
-  
+  "age": 30,  
 }
-
     return JsonResponse(x)
+
+class RegList(APIView):
+    def get(self,request):
+        passing_this=Regsistration.objects.all()
+        S = Reg_Serializer(passing_this, many = True)
+        return Response(S.data)
+
+    def post(self, request, format=None):
+        serializer = Reg_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
