@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FIRSTAPPLICATION',
     'SECONDAPPLICATION',
-    'BLOG'
+    'BLOG',
+    'rest_framework'
 ]
 
 #AUTH_USER_MODEL = 'BLOG.models.Registration'
