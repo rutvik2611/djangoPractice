@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .forms import Regsistration_form,login_form,Login_form2
 from . import views
 from django.contrib.auth import authenticate, login
@@ -90,15 +90,7 @@ def update_registration(request,id):
     return HttpResponse("ID was: "+ str(obj_for_query.username))
 
 def login2(request):
-    # form = Login_form2()
-    # if request.method == 'POST':
-    #     form = Login_form2(data =request.POST or None)
-    #     if form.is_valid():
-    #         return HttpResponse("Form Valid")
-    #     else:
-    #         print(uname)
-    #         return HttpResponse("Validation Error" + str(form.errors))
-    # return render(request, 'BLOG/login.html', {'passed_value': form})
+ 
     form = login_form(request.POST or None)
     if form.is_valid():
 
@@ -119,3 +111,14 @@ def login2(request):
         
 
     return render(request, 'BLOG/login.html', {'passed_value': form})
+
+
+def random(request):
+    x = x = {
+  "name": "John",
+  "age": 30,
+  
+  
+}
+
+    return JsonResponse(x)
