@@ -12,3 +12,15 @@ class Regsistration(models.Model):
     
     def __str__(self):
         return self.username
+
+
+class BlogRegsistration(models.Model):
+    name = models.CharField(max_length = 200)
+    value = models.TextField(blank = True)
+    
+    
+    def __str__(self):
+        return self.name
+
+#Serializer<- convert model to JSON data
+

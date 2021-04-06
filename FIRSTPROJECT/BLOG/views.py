@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializer import Reg_Serializer
+from rest_framework import viewsets
 # Create your views here.
 
 # def signup(request):
@@ -134,3 +135,10 @@ class RegList(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+    
+
+class RegisterViewSet(viewsets.ModelViewSet):
+    query = Regsistration.objects.all()
+    serializer_class = Reg_Serializer
+
+#Router
