@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Records</title>
+     {% load staticfiles %}
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}"/>
+</head>
+<body>
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Name</th>
+        <th>Text</th>
+        
+        
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+       
+        <!-- a=[2,3,4,5,6]     employees=[['name', 'email'], ['name','email']
+        for i in a:
+            print(a)   {{ employee.ename  }} -->
+            <h1>Blogs</h1>
+{% for employee in employees %}
+    <tr>
+        <td>{{ employee.name }}</td> 
+        <td>{{ employee.value }}</td>
+       
+        
+        <td>
+            <a href="../blog/x/{{ employee.id }}">DELETE</a>
+            <!-- <a href="../blog/e/{{ employee.id }}">EDIT</a> -->
+
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+
+<center><a href="/blog/login/create" class="btn btn-primary">ADD NEW RECORDS</a></center>
+
+
+</body>
+</html>

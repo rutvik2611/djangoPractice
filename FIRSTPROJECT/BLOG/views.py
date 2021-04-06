@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
-from .forms import Regsistration_form,login_form,Login_form2
+from .forms import Regsistration_form,login_form,Login_form2,Blog_form
 from . import views
 from django.contrib.auth import authenticate, login
-from .models import Regsistration
+from .models import Regsistration,BlogRegsistration
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -91,6 +91,42 @@ def update_registration(request,id):
 
     
     return HttpResponse("ID was: "+ str(obj_for_query.username))
+
+def blog_form_view(request):
+    #return HttpResponse("Ok")
+
+    passing = Blog_form()
+    if request.method == "POST":
+        passing = Blog_form(request.POST)
+        if passing.is_valid():
+            try:
+                passing.save()
+                return redirect ('/blog/login/create/show')
+                #return HttpResponse("Registered")
+                #return render(request,"BLOG/Welcome.html",{"Registration":passing})
+            except:
+                return HttpResponse("ERROR")
+        else:
+            return HttpResponse("Issue :" + str(passing.errors))
+
+    return render(request,"BLOG/CreateBlog.html",{"passed_value":passing})
+
+def show_blog(request):
+    pass_obj = BlogRegsistration.objects.all()
+    return render(request,"BLOG/ShowBlog.html",{"employees":pass_obj})
+
+def blog_delet(request,id):
+    obj_for_query = BlogRegsistration.objects.get(id=id)
+    obj_for_query.delete()
+    return redirect('/blog/login/create/show')
+
+
+
+
+
+
+
+
 
 def login2(request):
  
