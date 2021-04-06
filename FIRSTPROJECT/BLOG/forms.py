@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Regsistration
+from .models import Regsistration,BlogRegsistration
 from django import forms
 from django.contrib.auth import authenticate, login
 
@@ -14,6 +14,13 @@ class Regsistration_form(ModelForm):
 
 
 
+class Blog_form(ModelForm):
+    #password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = BlogRegsistration
+        #fields = ['username','password','email','phone_number']
+        fields = "__all__"
+        
 class login_form(forms.Form):
 
     username = forms.CharField()
@@ -43,3 +50,7 @@ class Login_form2(ModelForm):
         fields = ['username','password']
         
         widgets = {'password': forms.PasswordInput()}
+
+class create_blog(Regsistration):
+    
+    class meta:
